@@ -42,27 +42,14 @@ public class ShopRepository {
         return null;
     }
 
-    public void removeById(int id) {
-        Product find = findById(id);
-        if (find == null) {
-            throw new NotFoundException("Продукт с ID: " + id + "не найден.");
-
-        }
-
-        Product[] tmp = new Product[products.length - 1];
-        int copyToIndex = 0;
-        for (Product product : products) {
-            if (product.getId() != id) {
-                tmp[copyToIndex] = product;
-                copyToIndex++;
-            }
-        }
-        products = tmp;
-    }
-
 
     // Этот способ мы рассматривали в теории в теме про композицию
     public void remove(int id) {
+        Product find = findById(id);
+        if (find == null) {
+            throw new NotFoundException("Продукт с ID: " + id + "не найден.");
+        }
+
         Product[] tmp = new Product[products.length - 1];
         int copyToIndex = 0;
         for (Product product : products) {

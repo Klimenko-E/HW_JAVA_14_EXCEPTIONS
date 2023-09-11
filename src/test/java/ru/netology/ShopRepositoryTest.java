@@ -17,7 +17,7 @@ public class ShopRepositoryTest {
         repo.add(product1);
         repo.add(product2);
         repo.add(product3);
-        repo.removeById(1);
+        repo.remove(1);
 
         Product[] products = repo.findAll();
         Product[] expected = {product2, product3};
@@ -39,7 +39,7 @@ public class ShopRepositoryTest {
         repo.add(product3);
 
         Assertions.assertThrows(NotFoundException.class, () -> {
-            repo.removeById(-100);
+            repo.remove(-100);
         });
 
     }
